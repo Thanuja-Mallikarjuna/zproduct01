@@ -1,0 +1,142 @@
+{
+  "_version": "1.58.0",
+  "sap.app": {
+    "id": "com.ibm.zproduct01.zproduct01",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.11.4",
+      "toolsId": "8decd10b-7304-49e7-b07b-f823b1cda44a"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/C_PURCHASEORDER_FS_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.ibm.zproduct01.zproduct01.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.ibm.zproduct01.zproduct01.view",
+        "controlAggregation": "pages",
+        "controlId": "fcl",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteMain",
+          "pattern": ":layout:",
+          "target": [
+            "TargetMain",
+            "TargetDetail"
+          ]
+        },
+        {
+          "name": "RouteDetail",
+          "pattern": "/detail/{layout}",
+          "target": [
+            "TargetMain",
+            "TargetDetail"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetMain": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": "beginColumnPages",
+          "viewId": "Main",
+          "viewName": "Main"
+        },
+        "TargetDetail": {
+          "controlAggregation": "midColumnPages",
+          "viewId": "Detail",
+          "viewName": "Detail"
+        },
+        "TargetDetaildetail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "controlAggregation": "endColumnPages",
+          "viewId": "Detaildetail",
+          "viewName": "Detaildetail"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.ibm.zproduct01.zproduct01.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "fcl"
+    }
+  }
+}
