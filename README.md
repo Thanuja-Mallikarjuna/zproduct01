@@ -1,4 +1,6 @@
 reading a line for feature
+
+new line 
 ## Application Details
 
 |               |
